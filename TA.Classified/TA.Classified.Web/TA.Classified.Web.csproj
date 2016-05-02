@@ -125,6 +125,8 @@
     <Content Include="Content\CSS\classifiedStyles.css" />
     <Content Include="Content\CSS\font-awesome.min.css" />
     <Content Include="Content\CSS\jquery-ui.css" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\2014_ford_fiesta_india.jpg" />
     <Content Include="Content\Images\car.jpg" />
     <Content Include="Content\Images\car1.jpg" />
@@ -174,6 +176,12 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Shared\HomePartial.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
