@@ -85,6 +85,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>C:\Users\Administrator\Documents\Visual Studio 2015\Projects\WebApplication1\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -117,13 +120,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\bootstrap-theme.min.css" />
+    <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\classifiedStyles.css" />
+    <Content Include="Content\CSS\font-awesome.min.css" />
+    <Content Include="Content\CSS\jquery-ui.css" />
+    <Content Include="Content\Images\2014_ford_fiesta_india.jpg" />
+    <Content Include="Content\Images\car.jpg" />
+    <Content Include="Content\Images\car1.jpg" />
+    <Content Include="Content\Images\company_logo.png" />
+    <Content Include="Content\Images\electronics.jpg" />
+    <Content Include="Content\Images\fb.png" />
+    <Content Include="Content\Images\fb.svg" />
+    <Content Include="Content\Images\ford.jpg" />
+    <Content Include="Content\Images\gmail.png" />
+    <Content Include="Content\Images\google.png" />
+    <Content Include="Content\Images\hondacity.jpg" />
+    <Content Include="Content\Images\Houses_for_rent.jpg" />
+    <Content Include="Content\Images\house_rent.jpg" />
+    <Content Include="Content\Images\polo.jpg" />
+    <Content Include="Content\Images\smartphones.jpg" />
+    <Content Include="Content\Images\smart_phones_new.jpg" />
+    <Content Include="Content\Images\social-media-icons-15.png" />
+    <Content Include="Content\Images\usedcar1.jpg" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-ui.min.js" />
+    <Content Include="scripts\jquery.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -132,9 +164,16 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Fonts\fontawesome-webfont.woff" />
+    <Content Include="Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\Shared\HomePartial.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,7 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
