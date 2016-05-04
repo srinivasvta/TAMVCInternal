@@ -1,0 +1,61 @@
+﻿@model TA.Classified.Core.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="logincontainer">
+        <label>Create an Account:</label>
+
+
+        @using (Html.BeginForm("Register", "UserLogin",
+                                FormMethod.Post, new { @class = "form-horizontal form-signin form-margin" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="email">Email* </label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="pwd">Password*</label>
+                <div class="col-sm-6">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" for="pwd">Repeat Password*</label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="terms" name="terms"> I accept all the terms and conditions</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-sm-offset-4 col-sm-12">
+                            <button id="create-btn" type="submit" class="btn btn-md btn-primary" value="Create">Create</button>
+                        </div>
+
+                    </div>
+
+        }
+
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.Web", "TA.Classified.Web\TA.Classified.Web.csproj", "{572DA3E5-FC69-4A0B-A36B-BF6B1DACBE4B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.BLL", "TA.Classified.BLL\TA.Classified.BLL.csproj", "{D727BA28-4F14-4BA8-9A68-97ECBA22BAD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.DataAccess", "TA.Classified.DataAccess\TA.Classified.DataAccess.csproj", "{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.Core", "TA.Classified.Core\TA.Classified.Core.csproj", "{874A4BDA-8265-4980-B5F8-103343D29DC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

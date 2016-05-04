@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TA.Classified.DataAccess
+namespace TA.Classified.BLL
 {
-    public class Class1
+    public class BLLUser
     {
-    }
+      
+            }
 }

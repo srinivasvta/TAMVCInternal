@@ -3,34 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TA.Classified.Core;
 
 namespace TA.Classified.Web.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-        
-        
-        // GET: Home
+        // GET: UserLogin
         public ActionResult Index()
         {
-            return View("Home");
+            return View();
         }
 
-        // GET: Home/Details/5
+        // GET: UserLogin/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Home/Create
-        public ActionResult Create()
+        // GET: UserLogin/Create
+        public ActionResult Register()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: UserLogin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Register(FormCollection collection)
         {
             try
             {
@@ -44,13 +43,26 @@ namespace TA.Classified.Web.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        //Login//
+        [HttpGet]
+            public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            return View();
+        }
+
+        // GET: UserLogin/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: UserLogin/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +78,13 @@ namespace TA.Classified.Web.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: UserLogin/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: UserLogin/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
