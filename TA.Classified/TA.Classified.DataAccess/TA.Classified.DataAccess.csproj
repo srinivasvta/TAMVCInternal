@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Classifides.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,6 +68,21 @@
       <DependentUpon>Classifides.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TAC_Category.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAC_Classified.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAC_ClassifiedContact.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAC_Country.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TAC_User.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Classifides.edmx">
@@ -92,6 +108,9 @@
       <DependentUpon>Classifides.edmx</DependentUpon>
       <LastGenOutput>Classifides.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

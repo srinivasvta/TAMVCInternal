@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.BLL", "TA.Cla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.DataAccess", "TA.Classified.DataAccess\TA.Classified.DataAccess.csproj", "{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.Classified.Core", "TA.Classified.Core\TA.Classified.Core.csproj", "{874A4BDA-8265-4980-B5F8-103343D29DC3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{874A4BDA-8265-4980-B5F8-103343D29DC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

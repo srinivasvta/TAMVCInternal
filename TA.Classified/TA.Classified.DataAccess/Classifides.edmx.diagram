@@ -13,6 +13,7 @@
         <AssociationConnector Association="TAC_Team5Model.FK_TAC_Classified_TAC_Classified" ManuallyRouted="false" />
         <AssociationConnector Association="TAC_Team5Model.FK_TAC_ClassifiedContact_TAC_Classified" ManuallyRouted="false" />
         <AssociationConnector Association="TAC_Team5Model.FK__TAC_User__Countr__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="TAC_Team5Model.FK_TAC_Classified_TAC_Category" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

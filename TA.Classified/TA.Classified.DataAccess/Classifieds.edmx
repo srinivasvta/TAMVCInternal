@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TAC_Team5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TA.Classified.DataAccess.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TAC_Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -25,7 +25,6 @@
           <Property Name="ClassifiedPrice" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PostedDate" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TAC_ClassifiedContact">
           <Key>
@@ -78,18 +77,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TAC_Classified_TAC_Category">
-          <End Role="TAC_Category" Type="Self.TAC_Category" Multiplicity="1" />
-          <End Role="TAC_Classified" Type="Self.TAC_Classified" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TAC_Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="TAC_Classified">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TAC_Classified_TAC_Classified">
           <End Role="TAC_User" Type="Self.TAC_User" Multiplicity="1" />
           <End Role="TAC_Classified" Type="Self.TAC_Classified" Multiplicity="*" />
@@ -114,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TAC_Team5ModelStoreContainer">
+        <EntityContainer Name="TAClassifiedDataAccessStoreContainer">
           <EntitySet Name="TAC_Category" EntityType="Self.TAC_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_Classified" EntityType="Self.TAC_Classified" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_ClassifiedContact" EntityType="Self.TAC_ClassifiedContact" Schema="dbo" store:Type="Tables" />
@@ -123,10 +110,6 @@
           <AssociationSet Name="FK__TAC_User__Countr__1A14E395" Association="Self.FK__TAC_User__Countr__1A14E395">
             <End Role="TAC_Country" EntitySet="TAC_Country" />
             <End Role="TAC_User" EntitySet="TAC_User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TAC_Classified_TAC_Category" Association="Self.FK_TAC_Classified_TAC_Category">
-            <End Role="TAC_Category" EntitySet="TAC_Category" />
-            <End Role="TAC_Classified" EntitySet="TAC_Classified" />
           </AssociationSet>
           <AssociationSet Name="FK_TAC_Classified_TAC_Classified" Association="Self.FK_TAC_Classified_TAC_Classified">
             <End Role="TAC_User" EntitySet="TAC_User" />
@@ -137,10 +120,11 @@
             <End Role="TAC_ClassifiedContact" EntitySet="TAC_ClassifiedContact" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TAC_Team5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TA.Classified.DataAccess" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="TAC_Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -148,7 +132,6 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoryImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TAC_Classified" Relationship="TAC_Team5Model.FK_TAC_Classified_TAC_Category" FromRole="TAC_Category" ToRole="TAC_Classified" />
         </EntityType>
         <EntityType Name="TAC_Classified">
           <Key>
@@ -164,8 +147,6 @@
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
           <NavigationProperty Name="TAC_User" Relationship="Self.FK_TAC_Classified_TAC_Classified" FromRole="TAC_Classified" ToRole="TAC_User" />
           <NavigationProperty Name="TAC_ClassifiedContact" Relationship="Self.FK_TAC_ClassifiedContact_TAC_Classified" FromRole="TAC_Classified" ToRole="TAC_ClassifiedContact" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TAC_Category" Relationship="TAC_Team5Model.FK_TAC_Classified_TAC_Category" FromRole="TAC_Classified" ToRole="TAC_Category" />
         </EntityType>
         <EntityType Name="TAC_ClassifiedContact">
           <Key>
@@ -246,7 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TAC_Team5Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TAC_Team5Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TAC_Category" EntityType="Self.TAC_Category" />
           <EntitySet Name="TAC_Classified" EntityType="Self.TAC_Classified" />
           <EntitySet Name="TAC_ClassifiedContact" EntityType="Self.TAC_ClassifiedContact" />
@@ -264,31 +245,15 @@
             <End Role="TAC_Country" EntitySet="TAC_Country" />
             <End Role="TAC_User" EntitySet="TAC_User" />
           </AssociationSet>
-          <AssociationSet Name="FK_TAC_Classified_TAC_Category" Association="TAC_Team5Model.FK_TAC_Classified_TAC_Category">
-            <End Role="TAC_Category" EntitySet="TAC_Category" />
-            <End Role="TAC_Classified" EntitySet="TAC_Classified" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_TAC_Classified_TAC_Category">
-          <End Type="TAC_Team5Model.TAC_Category" Role="TAC_Category" Multiplicity="1" />
-          <End Type="TAC_Team5Model.TAC_Classified" Role="TAC_Classified" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TAC_Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="TAC_Classified">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TAC_Team5ModelStoreContainer" CdmEntityContainer="TAC_Team5Entities">
+        <EntityContainerMapping StorageEntityContainer="TAClassifiedDataAccessStoreContainer" CdmEntityContainer="TAC_Team5Entities1">
           <EntitySetMapping Name="TAC_Category">
-            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_Category">
+            <EntityTypeMapping TypeName="TA.Classified.DataAccess.TAC_Category">
               <MappingFragment StoreEntitySet="TAC_Category">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -297,9 +262,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAC_Classified">
-            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_Classified">
+            <EntityTypeMapping TypeName="TA.Classified.DataAccess.TAC_Classified">
               <MappingFragment StoreEntitySet="TAC_Classified">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ClassifiedId" ColumnName="ClassifiedId" />
                 <ScalarProperty Name="ClassifiedTitle" ColumnName="ClassifiedTitle" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
@@ -312,7 +276,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAC_ClassifiedContact">
-            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_ClassifiedContact">
+            <EntityTypeMapping TypeName="TA.Classified.DataAccess.TAC_ClassifiedContact">
               <MappingFragment StoreEntitySet="TAC_ClassifiedContact">
                 <ScalarProperty Name="ContactId" ColumnName="ContactId" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -323,7 +287,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAC_Country">
-            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_Country">
+            <EntityTypeMapping TypeName="TA.Classified.DataAccess.TAC_Country">
               <MappingFragment StoreEntitySet="TAC_Country">
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -331,7 +295,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TAC_User">
-            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_User">
+            <EntityTypeMapping TypeName="TA.Classified.DataAccess.TAC_User">
               <MappingFragment StoreEntitySet="TAC_User">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
