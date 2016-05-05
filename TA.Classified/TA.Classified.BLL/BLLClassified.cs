@@ -10,13 +10,14 @@ namespace TA.Classified.BLL
 {
     public class BLLClassified
     {
-        public static IEnumerable<TAC_Classified> GetAllClassifieds(int pageSize, int pageNumber)
+        public static IEnumerable<ClassifiedViewModel> GetAllClassifieds(int pageSize, int pageNumber)
         {
             try
             {
                 using (TAC_Team5Entities entities = new TAC_Team5Entities())
                 {
-                    return entities.TAC_Classified.ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
+                    return (from clsfd in entities.TAC_Classified
+                           select new ClassifiedViewModel() { ClassifiedImage = clsfd.ClassifiedImage , ClassifiedTitle = clsfd.ClassifiedTitle , Description = clsfd.Description , Summary = clsfd.Summary , ClassifiedPrice = clsfd.ClassifiedPrice , PostedDate = clsfd.PostedDate }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
                 }
             }
             catch (Exception e)
@@ -25,7 +26,7 @@ namespace TA.Classified.BLL
             }
         }
 
-        public static bool AddClassified(AddClassifiedViewModel addClassified)
+        public static bool AddClassified(ClassifiedViewModel addClassified)
         {
             TAC_Classified newClassfied = new TAC_Classified();
             newClassfied.ClassifiedImage = addClassified.ClassifiedImage;
@@ -59,7 +60,7 @@ namespace TA.Classified.BLL
             return true;
         }
 
-        public static IEnumerable<TAC_Classified> GetClassifiedsbyCategory(string categoryName, int pageSize, int pageNumber)
+        public static IEnumerable<ClassifiedViewModel> GetClassifiedsbyCategory(string categoryName, int pageSize, int pageNumber)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace TA.Classified.BLL
 
                     return (from c in entities.TAC_Classified
                             where c.CategoryId.Equals(categoryID)
-                            select c).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
+                            select new ClassifiedViewModel() { ClassifiedImage = c.ClassifiedImage, ClassifiedTitle = c.ClassifiedTitle, Description = c.Description, Summary = c.Summary, ClassifiedPrice = c.ClassifiedPrice, PostedDate = c.PostedDate }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
                 }
             }
             catch (Exception e)
@@ -80,7 +81,7 @@ namespace TA.Classified.BLL
             }
         }
 
-        public static IEnumerable<TAC_Classified> GetClassifiedsbyUser(string emailAddress, int pageSize, int pageNumber)
+        public static IEnumerable<ClassifiedViewModel> GetClassifiedsbyUser(string emailAddress, int pageSize, int pageNumber)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace TA.Classified.BLL
 
                     return (from c in entities.TAC_Classified
                             where c.CreatedBy.Equals(userID)
-                            select c).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
+                            select new ClassifiedViewModel() { ClassifiedImage = c.ClassifiedImage, ClassifiedTitle = c.ClassifiedTitle, Description = c.Description, Summary = c.Summary, ClassifiedPrice = c.ClassifiedPrice, PostedDate = c.PostedDate }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
                 }
             }
             catch (Exception e)

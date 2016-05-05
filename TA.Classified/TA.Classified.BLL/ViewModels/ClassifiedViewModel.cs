@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace TA.Classified.BLL.ViewModels
 {
-    public class AddClassifiedViewModel
+    public class ClassifiedViewModel
     {
+        public int ClassifiedId { get; set; }
+
         [Required(ErrorMessage = "Please Enter Title")]
         [DataType(DataType.Text)]
         public string ClassifiedTitle { get; set; }
@@ -35,6 +37,8 @@ namespace TA.Classified.BLL.ViewModels
         [Required(ErrorMessage = "Please enter category name")]
         [DataType(DataType.Text)]
         public string CategoryName { get; set; }
+
+        public System.DateTime PostedDate { get; set; }
 
         [Required(ErrorMessage = "Please enter contact name")]
         [DataType(DataType.Text)]
