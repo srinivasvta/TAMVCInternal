@@ -1,0 +1,34 @@
+﻿<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header mynav">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand visible-xs title" href="#">Classifieds </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav nav-right">
+            <li class="active">
+                <a href="@Url.Action("Index","Classified")"><span class="glyphicon glyphicon-home"> Home</span></a>
+            </li>
+            <li>
+                <a href="@Url.Action("PostAd","Classified")"><span class="glyphicon glyphicon-tasks alt"> Post Ad</span></a>
+            </li>
+            <li><a href="@Url.Action("Login","Login")"><span class="glyphicon glyphicon-user"> Login</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            @if (Session["user"] != null)
+            {
+                <li>
+                    <a href="@Url.Action("MyAccount", "Classified")"><span class="glyphicon glyphicon-user"> MyAccount</span></a>
+                </li>
+            }
+            <li>
+                <a href="@Url.Action("Contact","Contact")"><span class="glyphicon glyphicon-earphone"> Contact Us</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>

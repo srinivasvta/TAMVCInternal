@@ -1,0 +1,40 @@
+﻿@model TA.Classified.BLL.ViewModels.ClassifiedsViewModel
+
+<div class="row">
+    <div class="adcontainer">
+        <label>Ads in: <span class="category"></span>@Session["categoryName"]</label>
+        <table class="table">
+            @foreach (var classified in Model.Classifieds)
+            {
+                <tr class="list-box">
+                    <td class="col-xs-4">
+                        <img src="@classified.ClassifiedImage" width="150px" height="120px">
+                    </td>
+                    <td class="col-xs-6">
+                        <a href="@Url.Action("ViewDetail", "Classified", new { ClassifiedId = classified.ClassifiedId })"><h4>@classified.ClassifiedTitle</h4></a>
+                        <p>@classified.ContactCity</p>
+                        <p>@classified.PostedDate</p>
+                    </td>
+                    <td class="col-xs-2">
+                        <h4>@classified.ClassifiedPrice</h4>
+                    </td>
+                </tr>
+            }
+        </table>
+        <ul class="pagination pull-right">
+            <li><a href="@Url.Action("Index", "Classified", new { page = Model.CurrentPage + 1 })">&laquo;</a></li>
+            @for (int pageNumber = 1; pageNumber <= Model.PageCount; pageNumber++)
+            {
+                if (Model.CurrentPage == pageNumber)
+                {
+                    <li class="active"><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">1</a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">1</a></li>
+                }
+            }
+            <li><a href="@Url.Action("Index", "Classified", new { page = Model.CurrentPage - 1 })">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
