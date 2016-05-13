@@ -1,0 +1,67 @@
+﻿@model TA.Classified.BLL.ViewModels.PostAdViewModel
+
+@{
+    ViewBag.Title = "Post Ad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="logincontainer">
+        <h4><label>Post an ad for: <span class="category">@Session["categoryName"]</span></label></h4>
+        @using (Html.BeginForm("PostAd", "Classified", FormMethod.Post, new { @class = "form-horizontal form-signin form-margin" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassifiedTitle, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(m => m.ClassifiedTitle, new { @class = "form-control", @placeholder = "Give the Title for your ad here" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(m => m.Description, new { @class = "form-control", @placeholder = "Give a brief description for your ad here" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ClassifiedImage, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.EditorFor(m => m.ClassifiedImage)
+                </div>
+            </div>
+            <hr>
+            <h4><label class="col-sm-12 col-xs-12">Your contact details:</label></h4>
+            <div class="form-group ">
+                @Html.LabelFor(m => m.ContactName, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.EditorFor(m => m.ContactName, new { @class = "form-control", @placeholder = "Enter Your name" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ContactPhone, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.EditorFor(m => m.ContactPhone, new { @class = "form-control", @placeholder = "+91" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ContactCity, new { @class = "control-label col-sm-4", })
+                <div class="col-xs-6">
+                    @Html.EditorFor(m => m.ContactCity, new { @class = "form-control", @placeholder = "Enter Your city" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ClassifiedPrice, new { @class = "control-label col-sm-4" })
+                <div class="col-xs-6">
+                    @Html.EditorFor(m => m.ClassifiedPrice, new { @class = "form-control", @placeholder = "Rs." })
+                </div>
+            </div>
+            <div class="form-group">
+                @ViewBag.PostAdMessage
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-12">
+                    <button id="create-btn" type="submit" class="btn btn-default btn-success">Post Ad</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

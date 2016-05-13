@@ -17,10 +17,19 @@
             <li>
                 <a href="@Url.Action("PostAd","Classified")"><span class="glyphicon glyphicon-tasks alt"> Post Ad</span></a>
             </li>
-            <li><a href="@Url.Action("Login","Login")"><span class="glyphicon glyphicon-user"> Login</span></a></li>
+            <li>
+                @if (Session["UserEmail"] == null)
+                {
+                    <a href="@Url.Action("Login", "Login")"><span class="glyphicon glyphicon-user"> Login</span></a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Logout", "Login")"><span class="glyphicon glyphicon-user"> Logout</span></a>
+                }
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (Session["user"] != null)
+            @if (Session["UserEmail"] != null)
             {
                 <li>
                     <a href="@Url.Action("MyAccount", "Classified")"><span class="glyphicon glyphicon-user"> MyAccount</span></a>
