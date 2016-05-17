@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/TA.Classified/TA.Classified.Web/Controllers

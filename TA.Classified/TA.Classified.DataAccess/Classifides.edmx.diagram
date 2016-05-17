@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="TAC_Team5Model.TAC_Category" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TAC_Team5Model.TAC_Classified" Width="1.5" PointX="5.375" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="TAC_Team5Model.TAC_ClassifiedContact" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TAC_Team5Model.TAC_Country" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TAC_Team5Model.TAC_Country" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TAC_Team5Model.TAC_User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="TAC_Team5Model.FK_TAC_Classified_TAC_Classified" ManuallyRouted="false" />
         <AssociationConnector Association="TAC_Team5Model.FK_TAC_ClassifiedContact_TAC_Classified" ManuallyRouted="false" />
