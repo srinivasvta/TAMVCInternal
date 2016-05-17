@@ -1,0 +1,54 @@
+﻿@model TA.Classified.BLL.ViewModels.UserLoginViewModel
+@{
+  ViewBag.Title = "Login";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="logincontainer">
+        Log In :
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal form-signin form-margin" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.EmailAddress, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(m => m.EmailAddress, new { @class = "form-control", @placeholder = "Enter Email id" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-6">
+                    @Html.EditorFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter password" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>@ViewBag.LoginMessage</div>
+                <div class="col-sm-offset-4 col-sm-12">
+                    <a>
+                        <button id="login-btn" type="submit" class="btn btn-default btn-success">Log in</button>
+                    </a>
+                    <a href="/Login/Register">
+                        <button id="register-btn" class="btn btn-default btn-warning">Register Here!</button>
+                    </a>
+                </div>
+            </div>
+        }
+        <form class="form-horizontal form-signin socialForm-margin" role="form" name="socialLogin">
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <a href="#"><button class="google"><span><img src="~/Content/Images/google.png" width="40px" height="40px"> Continue with Google+</span></button></a> &nbsp &nbsp
+                    <a href="#"><button class="facebook"><span><img src="~/Content/Images/fb.png" width="40px" height="40px"> Continue with Facebook</span></button></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

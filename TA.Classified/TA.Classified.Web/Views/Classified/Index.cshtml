@@ -1,0 +1,11 @@
+﻿@model TA.Classified.BLL.ViewModels.ClassifiedsViewModel
+
+@{
+    ViewBag.Title = "Classifieds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Action("Index", "Category")
+
+@Html.Partial("_ClassifiedListing", Model)
+
