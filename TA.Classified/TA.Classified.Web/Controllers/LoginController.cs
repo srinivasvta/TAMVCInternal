@@ -48,18 +48,22 @@ namespace TA.Classified.Web.Controllers
                 {
                     BLLUser b = new BLLUser();
                     b.RegisterUser(model);
+                    ViewBag.Successmessage = "Successfully Registered.";
+                    return RedirectToAction("Successful");
+                    //country();  
                 }
-                ViewBag.Successmessage = "Successfully Registered.";
-                country();
+               
                 // dropdownbind();
                 //return View();
-                return RedirectToAction("Successful");
+                
             }
             catch (Exception e)
             {
                 ViewBag.Failuremessage = "Email Already Registered try with another Email";
-                return View();
+                //return View();
             }
+            country();
+            return View();
 
         }
 
@@ -86,27 +90,34 @@ namespace TA.Classified.Web.Controllers
         
 
     [HttpPost]
-    public ActionResult Login(UserLoginViewModel user,string returnUrl)
-    {
-            
-      if (BLL.BLLUser.AuthenticateUser(user).Equals(true))
-      {
-              
-        Session["UserEmail"] = user.EmailAddress;
-        FormsAuthentication.SetAuthCookie(user.EmailAddress,user.rememberme);
-                if(this.Url.IsLocalUrl(returnUrl))
+     public ActionResult Login(UserLoginViewModel user, string Command, string returnUrl)
+        {
+            if (Command == "login")
+            {
+                if (BLL.BLLUser.AuthenticateUser(user).Equals(true))
                 {
-                    return Redirect(returnUrl);
+
+                    Session["UserEmail"] = user.EmailAddress;
+                    FormsAuthentication.SetAuthCookie(user.EmailAddress, user.rememberme);
+                    if (this.Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
                 }
-      }
-      
-      else
-      {
-        Session["UserEmail"] = null;
-        ViewBag.LoginMessage = "Login Failed..Please enter valid credentials";
-        return View(user);
-      }
-      return RedirectToAction("Index", "Classified");
+
+                else
+                {
+                    Session["UserEmail"] = null;
+                    ViewBag.LoginMessage = "Login Failed..Please enter valid credentials";
+                    return View(user);
+                }
+            }
+            else if (Command == "register")
+            {
+                return RedirectToAction("Register", "Login");
+            }
+
+            return RedirectToAction("Index", "Classified");
+        }
     }
-  }
 }

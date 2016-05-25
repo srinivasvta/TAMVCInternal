@@ -73,8 +73,9 @@ namespace TA.Classified.Web.Controllers
             //Category();
             var q = BLL.BLLCategory.GetCategories();
             ViewData["Categories"] = q;
-            PostAdViewModel viewModel = new PostAdViewModel();
-      return View(viewModel);
+            //      PostAdViewModel viewModel = new PostAdViewModel();
+            //return View(viewModel);
+            return View();
     }
 
         [HttpPost]

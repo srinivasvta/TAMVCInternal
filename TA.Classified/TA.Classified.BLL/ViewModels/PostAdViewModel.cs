@@ -52,9 +52,7 @@ namespace TA.Classified.BLL.ViewModels
     [Required(ErrorMessage = "Please enter contact city")]
     [DataType(DataType.Text)]
     public string ContactCity { get; set; }
-
-    
-       
+   
     
   }
 }
