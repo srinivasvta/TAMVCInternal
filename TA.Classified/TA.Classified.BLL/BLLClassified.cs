@@ -58,6 +58,7 @@ namespace TA.Classified.BLL
       if (addClassified != null)
       {
         TAC_Classified newClassfied = new TAC_Classified();
+                
         newClassfied.ClassifiedImage = addClassified.ClassifiedImage;
         newClassfied.ClassifiedPrice = addClassified.ClassifiedPrice;
         newClassfied.ClassifiedTitle = addClassified.ClassifiedTitle;

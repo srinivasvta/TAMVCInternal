@@ -1,46 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TA.Classified.DataAccess;
 
 namespace TA.Classified.BLL.ViewModels
 {
+    [Serializable]
+
     public class UserRegisterViewModel
     {
-        [Required(ErrorMessage = "Please Enter First Name")]
+        [Required]
         [DataType(DataType.Text)]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "it allows minimum 4 charecters maaximum 20 charecters.")]
         public string First_Name { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Last Name")]
+        [Required(ErrorMessage = "Enter Lastname")]
         [DataType(DataType.Text)]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "it allows minimum 4 charecters maaximum 20 charecters.")]
         public string Last_Name { get; set; }
 
-        [Required(ErrorMessage = "Please Enter EmailAddress")]
-        [RegularExpression(@"^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-‌​]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$", ErrorMessage = "Email is not valid")]
-        [Range(6, 50, ErrorMessage = "Email address should be 0-50 charecters.")]
+        [Required(ErrorMessage = "please Enter Email Address")]
         [DataType(DataType.EmailAddress)]
+
         public string EmailAddress { get; set; }
 
         [Required(ErrorMessage = "Please Enter Password")]
-        [Range(6, 20, ErrorMessage = "Password should be 6-20 charecters only")]
+        //[Range(6, 20, ErrorMessage = "Password should be 6-20 charecters only")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
 
         [Required(ErrorMessage = "Please Enter Password")]
         [DataType(DataType.Password)]
+
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Please Enter Gender")]
-        public Nullable<bool> Gender { get; set; }
+        public bool Gender { get; set; }
+
 
         [Required(ErrorMessage = "Please Enter DOB")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> DOB { get; set; }
 
-        [Required(ErrorMessage ="Please enter address")]
+        [Required(ErrorMessage = "Please enter address")]
         [DataType(DataType.MultilineText)]
         public string Address1 { get; set; }
 
@@ -56,14 +61,30 @@ namespace TA.Classified.BLL.ViewModels
         public string State { get; set; }
 
         [Required(ErrorMessage = "Please enter Country")]
-        [DataType(DataType.Text)]
-        public Nullable<int> Country { get; set; }
+        //[DataType(DataType.Text)]
+
+        public string Country { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter address")]
+        //[Required(ErrorMessage = "Please enter address")]
+        //[Range(10,10,ErrorMessage ="mobile number should be 10digits")]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-
+        //[MustBeTrue(ErrorMessage = "You gotta tick the box!")]
+        [Required(ErrorMessage = "click terms and conditions")]
+        public bool TermsAndConditions { get; set; }
 
     }
+    //define the validation for check box
+    public class MustBeTrueAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            return value is bool && (bool)value;
+        }
+    }
+
+
+
+
 }

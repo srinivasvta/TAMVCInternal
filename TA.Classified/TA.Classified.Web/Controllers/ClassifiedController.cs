@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TA.Classified.BLL.ViewModels;
+using TA.Classified.DataAccess;
+using System.Data.Entity;
+using System.IO;
 
 namespace TA.Classified.Web.Controllers
 {
@@ -11,7 +14,6 @@ namespace TA.Classified.Web.Controllers
   {
     // GET: Classified
     public ActionResult Index(int? page)
-
     {
       if (page == 0 || page == null)
       {
@@ -26,6 +28,17 @@ namespace TA.Classified.Web.Controllers
         return View(BLL.BLLClassified.GetAllClassifieds(3, (int)page));
       }
     }
+        private void Category()
+        {
+            TAC_Team5Entities entities = new TAC_Team5Entities();
+            var Category = entities.TAC_Category.ToList();
+            IEnumerable<SelectListItem> categories = Category.Select(m => new SelectListItem
+            {
+                Value = m.CategoryId.ToString(),
+                Text = m.CategoryName
+            });
+            ViewBag.CategoryId = categories;
+        }
 
     public ActionResult MyAccount(int? page)
     {
@@ -48,6 +61,7 @@ namespace TA.Classified.Web.Controllers
     {
       if (ClassifiedId != 0)
       {
+               
         return View(BLL.BLLClassified.GetClassifiedById(ClassifiedId));
       }
       else
@@ -56,34 +70,55 @@ namespace TA.Classified.Web.Controllers
 
     public ActionResult PostAd()
     {
-      PostAdViewModel viewModel = new PostAdViewModel();
+            //Category();
+            var q = BLL.BLLCategory.GetCategories();
+            ViewData["Categories"] = q;
+            PostAdViewModel viewModel = new PostAdViewModel();
       return View(viewModel);
     }
 
-    [HttpPost]
-    public ActionResult PostAd(PostAdViewModel model)
-    {
-      model.ClassifiedImage.SaveAs(Server.MapPath(@"/content/images/" + model.ClassifiedImage.FileName));
-      ClassifiedViewModel classified = new ClassifiedViewModel();
-      classified.ClassifiedImage = @"/content/images/" + model.ClassifiedImage.FileName;
-      classified.ClassifiedPrice = model.ClassifiedPrice;
-      classified.ClassifiedTitle = model.ClassifiedTitle;
-      classified.ContactCity = model.ContactCity;
-      classified.ContactName = model.ContactName;
-      classified.ContactPhone = model.ContactPhone;
-      classified.Createdby = Session["UserEmail"]?.ToString();
-      classified.PostedDate = DateTime.Now;
-      classified.Summary = model.Summary;
-      classified.Description = model.Description;
-      classified.CategoryName = Session["categoryName"]?.ToString();
-      if (BLL.BLLClassified.AddClassified(classified).Equals(true))
-      {
-        ViewBag.PostAdMessage = "Ad/Classified published successfully";
-      }
-      else
-      {
-        ViewBag.PostAdMessage = "Internal server issues, please try again later";
-      }
+        [HttpPost]
+        public ActionResult PostAd(PostAdViewModel model, HttpPostedFile file)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //model.ClassifiedImage.SaveAs(Server.MapPath(@"/content/images/" + model.ClassifiedImage.FileName));
+                    string filename = Path.GetFileName(file.FileName);
+                    model.ClassifiedImage = Path.Combine(Server.MapPath(@"/content/images/"), filename);
+                    ClassifiedViewModel classified = new ClassifiedViewModel();
+                    classified.CategoryName = model.CategoryName;
+                    classified.ClassifiedImage = @"/content/images/" + file.FileName;
+                    classified.ClassifiedPrice = model.ClassifiedPrice;
+                    classified.ClassifiedTitle = model.ClassifiedTitle;
+                    classified.ContactCity = model.ContactCity;
+                    classified.ContactName = model.ContactName;
+                    classified.ContactPhone = model.ContactPhone;
+                    classified.Createdby = Session["UserEmail"]?.ToString();
+                    classified.PostedDate = DateTime.Now;
+                    classified.Summary = model.Summary;
+                    classified.Description = model.Description;
+                    //classified.CategoryName = Convert.ToInt16(model.CategoryName);
+                    //classified.CategoryName = Session["categoryName"]?.ToString();
+                    if (BLL.BLLClassified.AddClassified(classified).Equals(true))
+                    {
+                        ViewBag.PostAdMessage = "Ad/Classified published successfully";
+                    }
+                    else
+                    {
+                        ViewBag.PostAdMessage = "Internal server issues, please try again later";
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        
+            
+            
 
       return View(model);
     }

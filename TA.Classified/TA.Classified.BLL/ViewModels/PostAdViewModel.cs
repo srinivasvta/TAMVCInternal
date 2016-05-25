@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data.Entity;
 
 namespace TA.Classified.BLL.ViewModels
 {
@@ -26,8 +27,7 @@ namespace TA.Classified.BLL.ViewModels
     public string Description { get; set; }
 
     [Required(ErrorMessage = "Please choose a Image")]
-    [DataType(DataType.Upload)]
-    public HttpPostedFileBase ClassifiedImage { get; set; }
+    public string ClassifiedImage { get; set; }
 
     [Required(ErrorMessage = "Please Enter price")]
     [DataType(DataType.Currency)]
@@ -36,8 +36,7 @@ namespace TA.Classified.BLL.ViewModels
     [Required(ErrorMessage = "Please enter user email id")]
     public string Createdby { get; set; }
 
-    [Required(ErrorMessage = "Please enter category name")]
-    [DataType(DataType.Text)]
+   
     public string CategoryName { get; set; }
 
     public System.DateTime PostedDate { get; set; }
@@ -53,5 +52,9 @@ namespace TA.Classified.BLL.ViewModels
     [Required(ErrorMessage = "Please enter contact city")]
     [DataType(DataType.Text)]
     public string ContactCity { get; set; }
+
+    
+       
+    
   }
 }

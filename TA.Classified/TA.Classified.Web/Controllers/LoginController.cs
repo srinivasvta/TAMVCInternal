@@ -4,39 +4,78 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TA.Classified.BLL;
 using TA.Classified.BLL.ViewModels;
 using TA.Classified.Core;
+using TA.Classified.DataAccess;
 
 namespace TA.Classified.Web.Controllers
 {
   public class LoginController : Controller
   {
-    public ActionResult Register()
+        //get country//
+        private void country()
+        {
+
+            TAC_Team5Entities entities = new TAC_Team5Entities();
+            var countries = entities.TAC_Country.ToList();
+            IEnumerable<SelectListItem> items = countries.Select(m => new SelectListItem
+            {
+                Value = m.CountryId.ToString(),
+                Text = m.CountryName
+            });
+            ViewBag.CountryId = items;
+
+
+        }
+        [HttpGet]
+        public ActionResult Register()
     {
-      return View();
+            country();
+            TAC_Team5Entities entities = new TAC_Team5Entities();
+            return View();
     }
 
     [HttpPost]
-    public ActionResult Register(FormCollection collection)
+    public ActionResult Register(UserRegisterViewModel model)
     {
-      try
-      {
-        // TODO: Add insert logic here
 
-        return RedirectToAction("Index");
-      }
-      catch
-      {
-        return View();
-      }
-    }
+            // TODO: Add insert logic here
 
-    public ActionResult Logout()
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    BLLUser b = new BLLUser();
+                    b.RegisterUser(model);
+                }
+                ViewBag.Successmessage = "Successfully Registered.";
+                country();
+                // dropdownbind();
+                //return View();
+                return RedirectToAction("Successful");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Failuremessage = "Email Already Registered try with another Email";
+                return View();
+            }
+
+        }
+
+        public ActionResult Logout()
     {
       Session["UserEmail"] = null;
       return RedirectToAction("Index", "Classified");
     }
 
+        //Suucessfully registered message
+
+            [HttpGet]
+            public ActionResult Successful()
+        {
+            return View();
+        }
     //Login//
     [HttpGet]
     public ActionResult Login()
@@ -44,15 +83,23 @@ namespace TA.Classified.Web.Controllers
       UserLoginViewModel model = new UserLoginViewModel();
       return View(model);
     }
+        
 
     [HttpPost]
-    public ActionResult Login(UserLoginViewModel user)
+    public ActionResult Login(UserLoginViewModel user,string returnUrl)
     {
+            
       if (BLL.BLLUser.AuthenticateUser(user).Equals(true))
       {
+              
         Session["UserEmail"] = user.EmailAddress;
-        FormsAuthentication.SetAuthCookie(user.EmailAddress, true);
+        FormsAuthentication.SetAuthCookie(user.EmailAddress,user.rememberme);
+                if(this.Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
       }
+      
       else
       {
         Session["UserEmail"] = null;

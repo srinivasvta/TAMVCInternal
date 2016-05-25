@@ -176,7 +176,9 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -184,7 +186,6 @@
     <Compile Include="Controllers\ClassifiedController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +222,7 @@
     <Content Include="Views\Classified\PostAd.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Contact\ContactUs.cshtml" />
+    <Content Include="Views\Login\Successful.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -237,6 +239,10 @@
     <ProjectReference Include="..\TA.Classified.Core\TA.Classified.Core.csproj">
       <Project>{874a4bda-8265-4980-b5f8-103343d29dc3}</Project>
       <Name>TA.Classified.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TA.Classified.DataAccess\TA.Classified.DataAccess.csproj">
+      <Project>{44426E4B-38B7-49AD-BEE7-0C0F99B17F9A}</Project>
+      <Name>TA.Classified.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

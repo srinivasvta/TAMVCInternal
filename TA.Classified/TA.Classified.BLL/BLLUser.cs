@@ -10,39 +10,58 @@ namespace TA.Classified.BLL
 {
     public class BLLUser
     {
-        public static bool RegisterUser(UserRegisterViewModel registerUser)
+        public  bool RegisterUser(UserRegisterViewModel registerUser)
         {
-            TAC_User newUser = new TAC_User();
 
-            newUser.UserId = Guid.NewGuid();
-            newUser.First_Name = registerUser.First_Name;
-            newUser.Last_Name = registerUser.Last_Name;
-            newUser.Email = registerUser.EmailAddress;
-            newUser.UPassword = registerUser.Password;
-            newUser.Address1 = registerUser.Address1;
-            newUser.Address2 = registerUser.Address2;
-            newUser.City = registerUser.City;
-            newUser.Country = registerUser.Country;
-            newUser.State = registerUser.State;
-            newUser.Phone = registerUser.Phone;
-            newUser.CreatedDate = DateTime.Now;
-            newUser.IsActive = true;
-            newUser.IsLocked = false;
-            newUser.IsVerified = true;
-            try
-            {
-                using (TAC_Team5Entities entities = new TAC_Team5Entities())
+            using (TAC_Team5Entities entities = new TAC_Team5Entities())
+            { 
+                TAC_User newUser = new TAC_User();
+            var s = entities.TAC_User.Where(m => m.Email == registerUser.EmailAddress).Count();
+                if (s == 0)
                 {
-                    entities.TAC_User.Add(newUser);
-                    entities.SaveChanges();
+                    newUser.UserId = Guid.NewGuid();
+                    newUser.Email = registerUser.EmailAddress;
+                    newUser.UPassword = registerUser.Password;
+                    newUser.First_Name = registerUser.First_Name;
+                    newUser.Last_Name = registerUser.Last_Name;
+                    newUser.Gender = registerUser.Gender;
+                    newUser.DOB = registerUser.DOB;
+                    newUser.Address1 = registerUser.Address1;
+                    newUser.Address2 = registerUser.Address2;
+                    newUser.City = registerUser.City;
+                    newUser.State = registerUser.State;
+                    newUser.Country = Convert.ToInt16(registerUser.Country);
+                    newUser.Phone = registerUser.Phone;
+                    newUser.CreatedDate = DateTime.Now;
+                    newUser.IsActive = true;
+                    newUser.IsLocked = false;
+                    newUser.IsVerified = true;
+
+                    //using (TAC_Team5Entities entities = new TAC_Team5Entities())
+                    //{
+                    try
+                    {
+                        entities.TAC_User.Add(newUser);
+                        entities.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        return false;
+                    }
                 }
+                else
+                {
+                    //
+                }
+
             }
-            catch (Exception e)
-            {
-                return false;
-            }
+
             return true;
         }
+
+
         public static bool AuthenticateUser(UserLoginViewModel user)
         {
             try

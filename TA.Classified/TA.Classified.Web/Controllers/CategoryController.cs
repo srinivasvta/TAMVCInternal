@@ -15,13 +15,11 @@ namespace TA.Classified.Web.Controllers
       return PartialView("_CategoryListing", BLL.BLLCategory.GetCategories());
     }
 
-    [HttpPost]
+  
     public ActionResult Category(string categoryName)
     {
       Session["categoryName"] = categoryName;
-      Session["categoryName"] = categoryName;
       return Redirect(Request.UrlReferrer.ToString());
-
     }
   }
 }

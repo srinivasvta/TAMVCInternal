@@ -9,29 +9,34 @@
         Log In :
         @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal form-signin form-margin" }))
         {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(m => m.EmailAddress, new { @class = "control-label col-sm-4" })
+                <label class="control-label col-sm-4" for="email">Email* </label>
                 <div class="col-sm-6">
                     @Html.EditorFor(m => m.EmailAddress, new { @class = "form-control", @placeholder = "Enter Email id" })
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "control-label col-sm-4" })
+                <label class="control-label col-sm-4" for="email">Password* </label>
                 <div class="col-sm-6">
                     @Html.EditorFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter password" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-10">
                     <div class="checkbox">
-                        <label>
+                        @*<label>
                             <input type="checkbox"> Remember me
-                        </label>
+                        </label>*@
+                        @Html.CheckBoxFor(m =>m.rememberme)
+                       <label>RememberMe</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div>@ViewBag.LoginMessage</div>
+                <div><h5 style="color:red">@ViewBag.LoginMessage</h5></div>
                 <div class="col-sm-offset-4 col-sm-12">
                     <a>
                         <button id="login-btn" type="submit" class="btn btn-default btn-success">Log in</button>

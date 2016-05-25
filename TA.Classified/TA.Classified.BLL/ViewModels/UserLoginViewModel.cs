@@ -18,5 +18,6 @@ namespace TA.Classified.BLL.ViewModels
         [Range(6, 20, ErrorMessage = "Password should be 6-20 charecters only")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public bool rememberme { get; set; }
     }
 }
