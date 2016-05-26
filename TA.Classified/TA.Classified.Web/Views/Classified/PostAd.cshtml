@@ -24,18 +24,21 @@
                 @Html.LabelFor(model => model.ClassifiedTitle, new { @class = "control-label col-sm-4" })
                 <div class="col-sm-6">
                     @Html.EditorFor(m => m.ClassifiedTitle, new { @class = "form-control", @placeholder = "Give the Title for your ad here" })
+                    @Html.ValidationMessageFor(model => model.ClassifiedTitle, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Summary, new { @class = "control-label col-sm-4" })
                 <div class="col-sm-6">
                     @Html.EditorFor(m => m.Summary, new { @class = "form-control", @placeholder = "Give a brief description for your ad here" })
+                    @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, new { @class = "control-label col-sm-4" })
                 <div class="col-sm-6">
                     @Html.EditorFor(m => m.Description, new { @class = "form-control", @placeholder = "Give a brief description for your ad here" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
@@ -53,24 +56,28 @@
                 @Html.LabelFor(m => m.ContactName, new { @class = "control-label col-sm-4" })
                 <div class="col-xs-6">
                     @Html.EditorFor(m => m.ContactName, new { @class = "form-control", @placeholder = "Enter Your name" })
+                    @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ContactPhone, new { @class = "control-label col-sm-4" })
                 <div class="col-xs-6">
                     @Html.EditorFor(m => m.ContactPhone, new { @class = "form-control", @placeholder = "+91" })
+                    @Html.ValidationMessageFor(model => model.ContactPhone, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ContactCity, new { @class = "control-label col-sm-4", })
                 <div class="col-xs-6">
                     @Html.EditorFor(m => m.ContactCity, new { @class = "form-control", @placeholder = "Enter Your city" })
+                    @Html.ValidationMessageFor(model => model.ContactCity, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.ClassifiedPrice, new { @class = "control-label col-sm-4" })
                 <div class="col-xs-6">
                     @Html.EditorFor(m => m.ClassifiedPrice, new { @class = "form-control", @placeholder = "Rs." })
+                    @Html.ValidationMessageFor(model => model.ClassifiedPrice, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group col-sm-offset-4 col-sm-12">
