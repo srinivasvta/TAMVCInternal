@@ -3,6 +3,7 @@
 <div class="row">
     <div class="adcontainer">
         <label>Ads in: <span class="category"></span>@Session["categoryName"]</label>
+        
         <table class="table">
             @foreach (var classified in Model.Classifieds)
             {
@@ -21,17 +22,18 @@
                 </tr>
             }
         </table>
+        
         <ul class="pagination pull-right">
             <li><a href="@Url.Action("Index", "Classified", new { page = Model.CurrentPage + 1 })">&laquo;</a></li>
             @for (int pageNumber = 1; pageNumber <= Model.PageCount; pageNumber++)
             {
                 if (Model.CurrentPage == pageNumber)
                 {
-                    <li class="active"><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">1</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">@pageNumber</a></li>
                 }
                 else
                 {
-                    <li><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">1</a></li>
+                    <li><a href="@Url.Action("Index", "Classified", new { page = pageNumber })">@pageNumber</a></li>
                 }
             }
             <li><a href="@Url.Action("Index", "Classified", new { page = Model.CurrentPage - 1 })">&raquo;</a></li>
