@@ -18,7 +18,7 @@
                 <a href="@Url.Action("PostAd","Classified")"><span class="glyphicon glyphicon-tasks alt"> Post Ad</span></a>
             </li>
             <li>
-                @if (Session["UserEmail"] == null)
+                @if (!Request.IsAuthenticated)
                 {
                     <a href="@Url.Action("Login", "Login")"><span class="glyphicon glyphicon-user"> Login</span></a>
                 }
@@ -29,10 +29,13 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            @if (Session["UserEmail"] != null)
+            @if (Request.IsAuthenticated)
             {
                 <li>
                     <a href="@Url.Action("MyAccount", "Classified")"><span class="glyphicon glyphicon-user"> MyAccount</span></a>
+                </li>
+                <li>
+                    @User.Identity.Name;
                 </li>
             }
             <li>

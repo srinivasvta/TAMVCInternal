@@ -7,9 +7,9 @@ using TA.Classified.DataAccess;
 namespace TA.Classified.BLL.ViewModels
 {
     [Serializable]
-
     public class UserRegisterViewModel
     {
+        public System.Guid userId { get; set; }
         [Required]
         [DataType(DataType.Text)]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "it allows minimum 4 charecters maaximum 20 charecters.")]
@@ -23,18 +23,18 @@ namespace TA.Classified.BLL.ViewModels
         [Required(ErrorMessage = "please Enter Email Address")]
         [DataType(DataType.EmailAddress)]
 
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Password")]
         //[Range(6, 20, ErrorMessage = "Password should be 6-20 charecters only")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string UPassword { get; set; }
 
 
         [Required(ErrorMessage = "Please Enter Password")]
         [DataType(DataType.Password)]
 
-        [Compare("Password")]
+        [Compare("UPassword")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Please Enter Gender")]
@@ -43,7 +43,7 @@ namespace TA.Classified.BLL.ViewModels
 
         [Required(ErrorMessage = "Please Enter DOB")]
         [DataType(DataType.Date)]
-        public Nullable<System.DateTime> DOB { get; set; }
+       public DateTime DOB { get; set; }
 
         [Required(ErrorMessage = "Please enter address")]
         [DataType(DataType.MultilineText)]
@@ -73,6 +73,9 @@ namespace TA.Classified.BLL.ViewModels
         //[MustBeTrue(ErrorMessage = "You gotta tick the box!")]
         [Required(ErrorMessage = "click terms and conditions")]
         public bool TermsAndConditions { get; set; }
+        //public Nullable<bool> TermsAndConditions { get; set; }
+        public Nullable<bool> isVerified { get; set; }
+        public Nullable<bool> isActive { get; set; }
 
     }
     //define the validation for check box

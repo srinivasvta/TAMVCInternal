@@ -14,6 +14,7 @@ namespace TA.Classified.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Classified", action = "Index", id = UrlParameter.Optional }

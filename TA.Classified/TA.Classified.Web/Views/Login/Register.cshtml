@@ -14,8 +14,8 @@
         @using (Html.BeginForm("Register", "Login",
                                                     FormMethod.Post, new { @class = "form-horizontal form-signin form-margin" }))
         {
-            @*<script src="@Url.Content("~/scripts/jquery.validate.min.js")" type="text/javascript"></script>
-                <script src="@Url.Content("~/scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+            <script src="@Url.Content("~/scripts/jquery.validate.min.js")" type="text/javascript"></script>
+                <script src="@Url.Content("~/scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 
 
@@ -37,19 +37,19 @@
                 <label class="control-label col-sm-4" for="email">Email* </label>
                 <div class="col-sm-6">
 
-                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "abc@xyz.com" } })
-                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "abc@xyz.com" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-4" for="fname">Firstname</label>
+                <label class="control-label col-sm-4" for="fname">Firstname*</label>
                 <div class="col-sm-6">
                     @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.First_Name,"", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-4" for="lname">Lastname</label>
+                <label class="control-label col-sm-4" for="lname">Lastname*</label>
                 <div class="col-sm-6">
                     @Html.EditorFor(model => model.Last_Name, new { htmlAttributes = new { @class = "form-control datepicker" }
                })
@@ -59,8 +59,8 @@
             <div class="form-group">
                 <label class="control-label col-sm-4" for="pwd">Password*</label>
                 <div class="col-sm-6">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter password" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.UPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter password" } })
+                    @Html.ValidationMessageFor(model => model.UPassword, "", new { @class = "text-danger" })
                     -
                 </div>
             </div>
@@ -75,14 +75,14 @@
 
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="sex">Gender</label>
+                        <label class="control-label col-sm-4" for="sex">Gender*</label>
                         <div class="col-sm-6">
                             @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>() { new SelectListItem() { Text = "Male", Value = "True" }, new SelectListItem() { Text = "Female", Value = "False" } })
                             @Html.ValidationMessageFor(model => model.Gender)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="dob">DateOfBirth</label>
+                        <label class="control-label col-sm-4" for="dob">DateOfBirth*</label>
                         <div class="col-sm-6">
                             @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control datepicker" } })
                             @Html.ValidationMessageFor(model => model.DOB,"", new { @class = "text-danger" })
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-sm-4" for="Ads1">Address1</label>
+                        <label class="control-label col-sm-4" for="Ads1">Address1*</label>
                         <div class="col-sm-6">
                             @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control",@placeholder="Enter Address" } })
                             @Html.ValidationMessageFor(model => model.Address1,"", new { @class = "text-danger" })
@@ -98,14 +98,14 @@
                     </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="Ads2">Address2</label>
+                            <label class="control-label col-sm-4" for="Ads2">Address2*</label>
                             <div class="col-sm-6">
                                 @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control",@placeholder="Enter Address" } })
                                 @Html.ValidationMessageFor(model => model.Address2,"", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="city">City</label>
+                            <label class="control-label col-sm-4" for="city">City*</label>
                             <div class="col-sm-6">
                                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control",@placeholder="Enter City" } })
                                 @Html.ValidationMessageFor(model => model.City,"", new { @class = "text-danger" })
@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="state">State</label>
+                            <label class="control-label col-sm-4" for="state">State*</label>
                             <div class="col-sm-6">
                                 @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control",@placeholder="Enter State" } })
                                 @Html.ValidationMessageFor(model => model.State,"", new { @class = "text-danger" })
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="phone">Mobile number</label>
+                            <label class="control-label col-sm-4" for="phone">Mobile number*</label>
                             <div class="col-sm-6">
                                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control",@placeholder="Enter MobileNumber" } })
                                 @Html.ValidationMessageFor(model => model.Phone,"", new { @class = "text-danger" })
@@ -129,7 +129,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="sex">Country</label>
+                            <label class="control-label col-sm-4" for="sex">Country*</label>
                             <div class="col-sm-offset-3 col-sm-10">
                                 @Html.DropDownListFor(model => model.Country, ViewBag.CountryId as IEnumerable<SelectListItem>)
                             </div>
@@ -142,7 +142,7 @@
                                 <div class="checkbox">
                                     @Html.CheckBoxFor(model => model.TermsAndConditions)
 
-                                    <label> I accept all the terms and conditions</label>
+                                    <label> I accept all the terms and conditions*</label>
                                     @Html.ValidationMessageFor(model => model.TermsAndConditions,"")
 
                                 </div>

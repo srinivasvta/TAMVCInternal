@@ -1,12 +1,16 @@
-﻿using System.Web;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Owin;
+using Owin;
 using System.Web.Optimization;
 
-namespace demosample
+
+namespace TA.Classified.Web.App_Start
 {
-    public class BundleConfig
+    public class Bundleconfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
+
+              public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/scripts/jquery-{version}.js"));
@@ -23,9 +27,10 @@ namespace demosample
                       "~/Scripts/bootstrap.js",
                       "~/scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
-}
+    }
+

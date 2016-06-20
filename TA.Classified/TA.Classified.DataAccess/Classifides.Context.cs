@@ -30,5 +30,6 @@ namespace TA.Classified.DataAccess
         public virtual DbSet<TAC_ClassifiedContact> TAC_ClassifiedContact { get; set; }
         public virtual DbSet<TAC_Country> TAC_Country { get; set; }
         public virtual DbSet<TAC_User> TAC_User { get; set; }
+        public virtual DbSet<TAC_TicketVerification> TAC_TicketVerification { get; set; }
     }
 }

@@ -17,16 +17,19 @@ namespace TA.Classified.BLL
                 using (TAC_Team5Entities entities = new TAC_Team5Entities())
                 {
                     ClassifiedsViewModel model = new ClassifiedsViewModel();
-                    model.Classifieds = (from clsfd in entities.TAC_Classified
-                                         join contact in entities.TAC_ClassifiedContact on clsfd.ClassifiedId equals contact.ClassifiedId
-                                         select new ClassifiedViewModel() { ClassifiedId = clsfd.ClassifiedId, ClassifiedImage = clsfd.ClassifiedImage, ClassifiedTitle = clsfd.ClassifiedTitle, Description = clsfd.Description, Summary = clsfd.Summary, ClassifiedPrice = clsfd.ClassifiedPrice, PostedDate = clsfd.PostedDate, ContactPhone = contact.ContactPhone, ContactCity = contact.ContactCity, ContactName = contact.ContactName }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
+                    
+                        model.Classifieds = (from clsfd in entities.TAC_Classified
+                                             join contact in entities.TAC_ClassifiedContact on clsfd.ClassifiedId equals contact.ClassifiedId
+                                             select new ClassifiedViewModel() { ClassifiedId = clsfd.ClassifiedId, ClassifiedImage = clsfd.ClassifiedImage, ClassifiedTitle = clsfd.ClassifiedTitle, Description = clsfd.Description, Summary = clsfd.Summary, ClassifiedPrice = clsfd.ClassifiedPrice, PostedDate = clsfd.PostedDate, ContactPhone = contact.ContactPhone, ContactCity = contact.ContactCity, ContactName = contact.ContactName }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
 
-                    model.PageCount = entities.TAC_Classified.Count() / pageSize;
+                        model.PageCount = entities.TAC_Classified.Count() / pageSize;
 
-                    model.CurrentPage = pageNumber;
+                        model.CurrentPage = pageNumber;
 
-                    return model;
-                }
+                        return model;
+                    }
+                    
+                
             }
             catch (Exception e)
             {
@@ -111,15 +114,17 @@ namespace TA.Classified.BLL
                                       select cat.CategoryId).First();
 
                     ClassifiedsViewModel model = new ClassifiedsViewModel();
+                  
+                        model.Classifieds = (from c in entities.TAC_Classified
+                                             join contact in entities.TAC_ClassifiedContact on c.ClassifiedId equals contact.ClassifiedId
+                                             where c.CategoryId.Equals(categoryID)
+                                             select new ClassifiedViewModel() { ClassifiedId = c.ClassifiedId, ClassifiedImage = c.ClassifiedImage, ClassifiedTitle = c.ClassifiedTitle, Description = c.Description, Summary = c.Summary, ClassifiedPrice = c.ClassifiedPrice, PostedDate = c.PostedDate, ContactCity = contact.ContactCity, ContactName = contact.ContactName, ContactPhone = contact.ContactPhone }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
 
-                    model.Classifieds = (from c in entities.TAC_Classified
-                                         join contact in entities.TAC_ClassifiedContact on c.ClassifiedId equals contact.ClassifiedId
-                                         where c.CategoryId.Equals(categoryID)
-                                         select new ClassifiedViewModel() { ClassifiedId = c.ClassifiedId, ClassifiedImage = c.ClassifiedImage, ClassifiedTitle = c.ClassifiedTitle, Description = c.Description, Summary = c.Summary, ClassifiedPrice = c.ClassifiedPrice, PostedDate = c.PostedDate, ContactCity = contact.ContactCity, ContactName = contact.ContactName, ContactPhone = contact.ContactPhone }).ToList().GetRange(pageSize * (pageNumber - 1), (pageSize * pageNumber) - 1);
-
-                    model.PageCount = entities.TAC_Classified.Count() / pageSize;
-                    model.CurrentPage = pageNumber;
-                    return model;
+                        model.PageCount = entities.TAC_Classified.Count() / pageSize;
+                        model.CurrentPage = pageNumber;
+                        return model;
+                    
+                    
                 }
             }
             catch (Exception e)
@@ -127,7 +132,7 @@ namespace TA.Classified.BLL
                 return null;
             }
         }
-
+       
         public static ClassifiedsViewModel GetClassifiedsbyUser(string emailAddress, int pageSize, int pageNumber)
         {
             try

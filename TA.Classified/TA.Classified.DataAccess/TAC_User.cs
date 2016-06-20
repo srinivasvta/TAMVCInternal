@@ -18,6 +18,7 @@ namespace TA.Classified.DataAccess
         public TAC_User()
         {
             this.TAC_Classified = new HashSet<TAC_Classified>();
+            this.TAC_TicketVerification = new HashSet<TAC_TicketVerification>();
         }
     
         public System.Guid UserId { get; set; }
@@ -41,5 +42,7 @@ namespace TA.Classified.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TAC_Classified> TAC_Classified { get; set; }
         public virtual TAC_Country TAC_Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TAC_TicketVerification> TAC_TicketVerification { get; set; }
     }
 }

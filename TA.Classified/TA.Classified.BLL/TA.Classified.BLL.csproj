@@ -35,6 +35,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\TA.Classified.DataAccess\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\TA.Classified.Web\Bin\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Scaffolding.EntityFramework.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -56,7 +59,9 @@
     <Compile Include="ViewModels\ClassifiedViewDetail.cs" />
     <Compile Include="ViewModels\ClassifiedViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\IdentityModel.cs" />
     <Compile Include="ViewModels\PostAdViewModel.cs" />
+    <Compile Include="ViewModels\TicketVerification.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="ViewModels\UserLoginViewModel.cs" />
   </ItemGroup>

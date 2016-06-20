@@ -81,6 +81,9 @@
     <Compile Include="TAC_Country.cs">
       <DependentUpon>Classifides.tt</DependentUpon>
     </Compile>
+    <Compile Include="TAC_TicketVerification.cs">
+      <DependentUpon>Classifides.tt</DependentUpon>
+    </Compile>
     <Compile Include="TAC_User.cs">
       <DependentUpon>Classifides.tt</DependentUpon>
     </Compile>

@@ -20,6 +20,7 @@ namespace TA.Classified.Web.Controllers
             }
             if (Session["categoryName"] != null)
             {
+                
                 return View(BLL.BLLClassified.GetClassifiedsbyCategory(Session["categoryName"].ToString(), 3, (int)page));
             }
             else
@@ -41,13 +42,15 @@ namespace TA.Classified.Web.Controllers
 
         public ActionResult MyAccount(int? page)
         {
-            if (page == 0)
+            if (page == 0||page == null)
             {
                 page = 1;
             }
-            if (Session["UserEmail"] != null)
+            if (Request.IsAuthenticated)
             {
-                return View(BLL.BLLClassified.GetClassifiedsbyUser(Session["UserEmail"].ToString(), 3, (int)page));
+                
+                return View(BLL.BLLClassified.GetClassifiedsbyUser(Session["UserEmail"].ToString(), 3, Convert.ToInt32(page)));
+                //return View(BLL.BLLClassified.GetClassifiedsbyUser(s).ToString(),3,Convert.ToInt32(page)));
             }
             else
             {
@@ -66,6 +69,8 @@ namespace TA.Classified.Web.Controllers
             else
                 return RedirectToAction("Index", "Home");
         }
+
+        [Authorize]
         [HttpGet]
         public ActionResult PostAd()
         {

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\TAMVCInternal-master\TAMVCInternal\TA.Classified\TA.Classified.DataAccess\Classifides.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\TAMVCInternal\TA.Classified\TA.Classified.DataAccess\Classifides.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

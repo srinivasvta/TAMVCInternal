@@ -44,6 +44,16 @@
           <Property Name="CountryId" Type="int" Nullable="false" />
           <Property Name="CountryName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TAC_TicketVerification">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="IsExpired" Type="bit" />
+          <Property Name="IsUsed" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="TAC_User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -114,11 +124,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TAC_TicketVerification_TAC_User">
+          <End Role="TAC_User" Type="Self.TAC_User" Multiplicity="0..1" />
+          <End Role="TAC_TicketVerification" Type="Self.TAC_TicketVerification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAC_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TAC_TicketVerification">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TAC_Team5ModelStoreContainer">
           <EntitySet Name="TAC_Category" EntityType="Self.TAC_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_Classified" EntityType="Self.TAC_Classified" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_ClassifiedContact" EntityType="Self.TAC_ClassifiedContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_Country" EntityType="Self.TAC_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAC_TicketVerification" EntityType="Self.TAC_TicketVerification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAC_User" EntityType="Self.TAC_User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__TAC_User__Countr__1A14E395" Association="Self.FK__TAC_User__Countr__1A14E395">
             <End Role="TAC_Country" EntitySet="TAC_Country" />
@@ -135,6 +158,10 @@
           <AssociationSet Name="FK_TAC_ClassifiedContact_TAC_Classified" Association="Self.FK_TAC_ClassifiedContact_TAC_Classified">
             <End Role="TAC_Classified" EntitySet="TAC_Classified" />
             <End Role="TAC_ClassifiedContact" EntitySet="TAC_ClassifiedContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAC_TicketVerification_TAC_User" Association="Self.FK_TAC_TicketVerification_TAC_User">
+            <End Role="TAC_User" EntitySet="TAC_User" />
+            <End Role="TAC_TicketVerification" EntitySet="TAC_TicketVerification" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -209,6 +236,7 @@
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="TAC_Classified" Relationship="Self.FK_TAC_Classified_TAC_Classified" FromRole="TAC_User" ToRole="TAC_Classified" />
           <NavigationProperty Name="TAC_Country" Relationship="Self.FK__TAC_User__Countr__1A14E395" FromRole="TAC_User" ToRole="TAC_Country" />
+          <NavigationProperty Name="TAC_TicketVerification" Relationship="TAC_Team5Model.FK_TAC_TicketVerification_TAC_User" FromRole="TAC_User" ToRole="TAC_TicketVerification" />
         </EntityType>
         <Association Name="FK_TAC_Classified_TAC_Classified">
           <End Role="TAC_User" Type="Self.TAC_User" Multiplicity="1" />
@@ -268,6 +296,11 @@
             <End Role="TAC_Category" EntitySet="TAC_Category" />
             <End Role="TAC_Classified" EntitySet="TAC_Classified" />
           </AssociationSet>
+          <EntitySet Name="TAC_TicketVerification" EntityType="TAC_Team5Model.TAC_TicketVerification" />
+          <AssociationSet Name="FK_TAC_TicketVerification_TAC_User" Association="TAC_Team5Model.FK_TAC_TicketVerification_TAC_User">
+            <End Role="TAC_User" EntitySet="TAC_User" />
+            <End Role="TAC_TicketVerification" EntitySet="TAC_TicketVerification" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_TAC_Classified_TAC_Category">
           <End Type="TAC_Team5Model.TAC_Category" Role="TAC_Category" Multiplicity="1" />
@@ -278,6 +311,29 @@
             </Principal>
             <Dependent Role="TAC_Classified">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TAC_TicketVerification">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="IsExpired" Type="Boolean" />
+          <Property Name="IsUsed" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TAC_User" Relationship="TAC_Team5Model.FK_TAC_TicketVerification_TAC_User" FromRole="TAC_TicketVerification" ToRole="TAC_User" />
+        </EntityType>
+        <Association Name="FK_TAC_TicketVerification_TAC_User">
+          <End Type="TAC_Team5Model.TAC_User" Role="TAC_User" Multiplicity="0..1" />
+          <End Type="TAC_Team5Model.TAC_TicketVerification" Role="TAC_TicketVerification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAC_User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TAC_TicketVerification">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -350,6 +406,17 @@
                 <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAC_TicketVerification">
+            <EntityTypeMapping TypeName="TAC_Team5Model.TAC_TicketVerification">
+              <MappingFragment StoreEntitySet="TAC_TicketVerification">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

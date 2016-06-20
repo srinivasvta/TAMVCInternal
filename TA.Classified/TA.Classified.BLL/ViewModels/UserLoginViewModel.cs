@@ -14,10 +14,14 @@ namespace TA.Classified.BLL.ViewModels
         //[Range(6, 50, ErrorMessage = "Email address should be 0-50 charecters.")]
         public string EmailAddress { get; set; }
 
-        //[Required(ErrorMessage = "Please Enter Password")]
+        [Required(ErrorMessage = "Please Enter Password")]
         //[Range(6, 20, ErrorMessage = "Password should be 6-20 charecters only")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool rememberme { get; set; }
+    }
+    public class ExternalLoginViewModel
+    {
+        public string ReturnUrl { get; set; }
     }
 }
